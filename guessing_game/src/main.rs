@@ -1,5 +1,6 @@
-use std::io; 
+
 use std::cmp::Ordering;
+use std::io; 
 
 use rand::Rng;
 
@@ -13,7 +14,10 @@ fn main() {
     // The Rng trait defines methods that random number generators implement
     // rand::thread_rng() -  function for  local random generator to the current thread
     // gen_range method - range expression (start..=end) 
-
+    println!("The Secret number  is : {secret_number}");
+   
+    loop {
+    println!("Please enter your guess.");
     let mut guess = String::new();
     // let is  how variables are defined 
     // mut = mutable variable must be declared before the variable 
@@ -42,15 +46,35 @@ fn main() {
         // 
 
     // could have been written all in one line 
+    let guess: u32 = match guess.trim().parse(){
+        Ok(num) => num,
+        Err(_)  => continue,
+    };
+    // Ok(num) -> if parse can successfully turn the string into a number then okay
+    // (_) -> is a catch all value 
+    // 
+    //let guess: u32 = guess.trim().parse().expect("Please type a number:");
+    // when taking input trim() is requred for read_line input - trims the \n for newline  
+    // parse method converts string to another type 
+    // the (:) will annotate the variable type
+        // u32 - unsigned 32 bit number
+        // u64 - unsigned 64 bit number
+        // i32 - signed 32 bit number
+        // i64 - signed 64 bit number
 
     println!("You guessed: {guess}");
     // printing values of a variable ("{variable}")   
     // printing expression ("{}", expression)
     //
-    match guess.cmp(&secret_number) {
+    match guess.cmp(&secret_number)    {   
         Ordering::Less => println!("Too small!"),
         Ordering::Greater => println!("Too big!"),
-        Ordering:: Equal => println!("You guessed it !"),
+        Ordering::Equal => {
+            println!("You guessed it!");
+            break;
+            }
+
+        }
     }
 }   
 
