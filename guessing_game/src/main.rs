@@ -1,0 +1,41 @@
+use std::io; 
+// this is known as the prelude  
+
+fn main() {
+    println!("Guess the number!");
+    println!("Enter your guess.");
+
+    let mut guess = String::new();
+    // let is  how variables are defined 
+    // mut = mutable variable must be declared before the variable 
+    // by default all variables are immutable 
+    //
+    // ' = '  means binding the variable 
+    // String::new - a function that returns a new instance of String
+    // String is a string type provided by the standard library that is growable, UTF-8 encoded bit
+    // of text 
+    //
+    // a mutable variable that is currently bound to a new, empty instance of string is created.
+    //
+
+    io::stdin()
+    // if prelude wasnt used  this could have been written as std:io:stdin
+    //
+        .read_line(&mut guess)
+        // (&mut guess) - arguments of read_line 
+        // & - reference  
+        // like variables references are also immutable unless stated otherwise
+        //
+        .expect("Failed to read line");
+        // RESULT is an enum which is a type that can be one of possible states.
+        //We call each state a VARIANT
+        // RESULT variants [ok, err]
+        // 
+
+    // could have been written all in one line 
+
+    println!("You guessed: {guess}");
+    // printing values of a variable ("{variable}")   
+    // printing expression ("{}", expression)
+    //
+}   
