@@ -1,9 +1,18 @@
 use std::io; 
+use std::cmp::Ordering;
+
+use rand::Rng;
+
 // this is known as the prelude  
 
 fn main() {
     println!("Guess the number!");
     println!("Enter your guess.");
+
+    let secret_number = rand::thread_rng().gen_range(1..=100);
+    // The Rng trait defines methods that random number generators implement
+    // rand::thread_rng() -  function for  local random generator to the current thread
+    // gen_range method - range expression (start..=end) 
 
     let mut guess = String::new();
     // let is  how variables are defined 
@@ -38,4 +47,10 @@ fn main() {
     // printing values of a variable ("{variable}")   
     // printing expression ("{}", expression)
     //
+    match guess.cmp(&secret_number) {
+        Ordering::Less => println!("Too small!"),
+        Ordering::Greater => println!("Too big!"),
+        Ordering:: Equal => println!("You guessed it !"),
+    }
 }   
+
